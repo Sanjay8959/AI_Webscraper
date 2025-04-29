@@ -30,7 +30,8 @@ Ensure you have Python installed (preferably 3.x) along with the necessary libra
    ```
 2. **Create and activate a virtual environment**
    ```sh
-   python3 -m venv .venv
+   python3 -m venv .venv # macOS/Linux
+   # python -m venv .venv # Windows
    source .venv/bin/activate  # macOS/Linux
    # .venv\Scripts\activate     # Windows
    ```
