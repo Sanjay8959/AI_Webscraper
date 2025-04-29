@@ -3,6 +3,8 @@
 
 import selenium.webdriver as webdriver
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import time
 
@@ -20,10 +22,6 @@ def scrape_website(website :str) :
 
     print(f"Launching local chrome browser for {website}...")
 
-    # We need to specify where our chrome driver is
-    # This is the path to the chrome driver - update this path if needed
-    chrome_driver_path : str = "./chromedriver" 
-
     # Create Chrome options
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
@@ -32,8 +30,9 @@ def scrape_website(website :str) :
     # Uncomment the line below to run Chrome in headless mode (without GUI)
     # options.add_argument("--headless")
     
-    # Initialize the Chrome driver
-    driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
+    # Initialize the Chrome driver using webdriver-manager
+    # This will automatically download and use the appropriate chromedriver version
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     try:
         driver.get(website) # Navigate to the website
